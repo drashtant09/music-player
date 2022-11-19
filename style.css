@@ -27,6 +27,7 @@ body{
 }
 .wrapper{
     width: 380px;
+    position: relative;
     border-radius: 15px;
     padding: 25px 30px;
     background: var(--white);
@@ -37,7 +38,8 @@ body{
     cursor: pointer;
 }
 
-.top-bar, .progress-area .timer, .controls {
+.top-bar, .progress-area .timer,
+.controls, .music-list .header, .music-list li {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -185,3 +187,63 @@ body{
     -webkit-text-fill-color: transparent;
 
  }
+
+ .music-list{
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   width: 100%;
+   padding: 15px 30px;
+   border-radius: 15px;
+   background: var(--white);
+   box-shadow: 0px -5px 10px rgba(0,0,0,0.1);
+
+ }
+
+ .music-list .header .row{
+   display: flex;
+   align-items: center;
+   font-size: 19px;
+   color: var(--lightblack);
+ }
+
+ .header .row i{
+   cursor: default;
+ }
+
+ .header .row span{
+   margin-left: 5px;
+ }
+
+ .header #close{
+   font-size: 22px;
+   color: var(--lightblack);
+ }
+
+ .music-list ul{
+   margin: 10px 0;
+ }
+
+ .music-list ul li {
+   cursor: pointer;
+   list-style: none;
+   padding-bottom: 10px;
+   border-bottom: 1px solid #e5e5e5;
+   margin-bottom: 5px;
+   color: var(--lightblack)
+   
+ }
+
+ .music-list ul li:last-child{
+   border-bottom: 0px;
+ }
+
+ .music-list ul li .row span{
+   opacity: 0.9;
+ }
+
+ ul li .audio-duration{
+   font-size: 16px;
+ }
+
