@@ -1,45 +1,51 @@
 let allMusic = [
     {
+        name: "MAA",
+        artist: "...Shankar Mahadevan...",
+        img: "music-1",
+        src: "music-1"
+    },
+    {
         name: "DANCE KA BHOOT",
         artist: "...Arijit Singh...",
-        img: "image-4",
-        src: "image-4",
+        img: "music-2",
+        src: "music-2"
     },
     {
         name: "RANG JO LAGYO",
         artist: "...Atif Aslam, Shreya Ghoshal...",
-        img: "image-8",
-        src: "image-8",
+        img: "music-3",
+        src: "music-3"
     },
     {
         name: "TU AAKE DEKHLE",
         artist: "...King...",
-        img: "image-3",
-        src: "image-3",
+        img: "music-4",
+        src: "music-4"
     },
     {
         name: "BESABRIYAAN",
         artist: "...Armaan Malik...",
-        img: "image-7",
-        src: "image-7",
+        img: "music-5",
+        src: "music-5"
     },
     {
         name: "SHUBHAARAMBH",
         artist: "...Shruti Pathak...",
-        img: "image-5",
-        src: "image-5",
+        img: "music-6",
+        src: "music-6"
     },
     {
         name: "KESARIYA",
         artist: "...Arijit Singh...",
-        img: "image-1",
-        src: "image-1",
+        img: "music-7",
+        src: "music-7"
     },
     {
         name: "LEMONADE",
         artist: "...Diljit Dosanjh...",
-        img: "image-2",
-        src: "image-2",
+        img: "music-8",
+        src: "music-8"
     },
     
 ]
