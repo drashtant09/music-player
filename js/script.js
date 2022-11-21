@@ -8,6 +8,7 @@ mainAudio = wrapper.querySelector("#main-audio");
 playPauseBtn = wrapper.querySelector(".play-pause"),
 prevBtn = wrapper.querySelector("#prev"),
 nextBtn = wrapper.querySelector("#next"),
+progressArea = wrapper.querySelector(".progress-area"),
 progressBar = wrapper.querySelector(".progress-bar");
 
 let musicIndex = 2;
@@ -74,17 +75,86 @@ mainAudio.addEventListener("timeupdate", (e)=>{
     const duration = e.target.duration;
     let progressWidth = (currentTime / duration) * 100;
     progressBar.style.width = `${progressWidth}%`;
-    
-    mainAudio.addEventListener("loadeddata", ()=>{
+
         let musicCurrentTime = wrapper.querySelector(".current"),
         musicDuration = wrapper.querySelector(".duration");
-        
-        let audioDuration = minAudio.duration;
-        let totalMin = math.floor(audioDuration / 60);
-        let totalSec = math.floor(audioDuration % 60);
+
+        mainAudio.addEventListener("loadeddata", ()=>{
+         
+    // total duration
+
+        let audioDuration = mainAudio.duration;
+        let totalMin = Math.floor(audioDuration / 60);
+        let totalSec = Math.floor(audioDuration % 60);
         if(totalSec < 10){
             totalSec = `0${totalSec}`;
         }
         musicDuration.innerText = `${totalMin}:${totalSec}`;
     });
-});
+     // current time
+        let currentMin = Math.floor(currentTime / 60);
+        let currentSec = Math.floor(currentTime % 60);
+        if(currentSec < 10){
+            currentSec = `0${currentSec}`;
+        }
+        musicCurrentTime.innerText = `${currentMin}:${currentSec}`;
+    });
+
+    //update playing song currentTime on according to the progress bar width
+
+    progressArea.addEventListener("click", (e)=>{
+        let progressWidthval = progressArea.clientWidth;
+        let clickedOffSetX = e.offsetX;
+        let songDuration = mainAudio.duration;
+
+        mainAudio.currentTime = (clickedOffSetX / progressWidthval) * songDuration;
+        playMusic();
+        
+    });
+
+    //change loop, shuffle, repeat icon onclick
+
+    const repeatBtn = wrapper.querySelector("#repeat_plist");
+    repeatBtn.addEventListener("click", ()=>{
+        let getText = repeatBtn.innerText;
+        switch(getText){
+            case "repeat":
+                repeatBtn.innerText = "repeat_one";
+                repeatBtn.setAttribute("title", "Song looped");
+                break;
+                case "repeat_one":
+                    repeatBtn.innerText = "shuffle";
+                    repeatBtn.setAttribute("title", "Playback shuffle");
+                    break;
+                    case "shuffle":
+                        repeatBtn.innerText = "repeat";
+                        repeatBtn.setAttribute("title", "Playlist looped");
+                        break;
+            }
+    });
+
+   // code for what to do after song ended
+
+   mainAudio.addEventListener("ended", ()=>{
+    let getText = repeatBtn.innerText;
+        switch(getText){
+            case "repeat":
+                nextMusic();
+                break;
+                case "repeat_one":
+                    mainAudio.currentTime = 0;
+                    loadMusic(musicIndex);
+                    playMusic();
+                    break;
+                    case "shuffle":
+                        let randIndex = Math.floor(Math.random() * allMusic.length + 1);
+                        do{
+                            andIndex = Math.floor(Math.random() * allMusic.length + 1);
+                        }while(musicIndex = randIndex);
+                        musicIndex = randIndex;
+                        loadMusic(musicIndex);
+                        playMusic();
+                        break;
+        }
+   });
+
