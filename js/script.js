@@ -1,7 +1,7 @@
 // lets select all required tags or elements
 
 const wrapper = document.querySelector(".wrapper"),
-musicImg = document.querySelector(".img-area img"),
+musicImg = wrapper.querySelector(".img-area img"),
 musicName = wrapper.querySelector(".song-details .name"),
 musicArtist = wrapper.querySelector(".song-details .artist"),
 mainAudio = wrapper.querySelector("#main-audio");
@@ -11,10 +11,10 @@ nextBtn = wrapper.querySelector("#next"),
 progressArea = wrapper.querySelector(".progress-area"),
 progressBar = wrapper.querySelector(".progress-bar"),
 musicList = wrapper.querySelector("music-list"),
-showMoreBtn = wrapper.querySelector("#music-more"),
-hideMusicBtn = wrapper.querySelector("#close");
+moreMusicBtn = wrapper.querySelector("#more-music"),
+closmoreMusic = wrapper.querySelector("#close");
 
-let musicIndex = Math.floor( (Math.random() * allMusic.length) + 1)
+let musicIndex = Math.floor( (Math.random() * allMusic.length) + 1);
 isMusicPaused = true;
 
 window.addEventListener("load", ()=>{
@@ -26,7 +26,7 @@ window.addEventListener("load", ()=>{
 function loadMusic(indexNumb){
     musicName.innerText = allMusic[indexNumb - 1].name;
     musicArtist.innerText = allMusic[indexNumb - 1].artist;
-    musicImg.src = `images/${allMusic[indexNumb - 1].img}.jpeg`;
+    musicImg.src = `images/${allMusic[indexNumb - 1].src}.jpeg`;
     mainAudio.src = `songs/${allMusic[indexNumb -1].src}.mp3`;
 
 }
@@ -85,16 +85,16 @@ mainAudio.addEventListener("timeupdate", (e)=>{
     let progressWidth = (currentTime / duration) * 100;
     progressBar.style.width = `${progressWidth}%`;
 
-        let musicCurrentTime = wrapper.querySelector(".current"),
-        musicDuration = wrapper.querySelector(".duration");
+        let musicCurrentTime = wrapper.querySelector(".current-time"),
+        musicDuration = wrapper.querySelector(".max-duration");
 
         mainAudio.addEventListener("loadeddata", ()=>{
          
     // total duration
 
-        let audioDuration = mainAudio.duration;
-        let totalMin = Math.floor(audioDuration / 60);
-        let totalSec = Math.floor(audioDuration % 60);
+        let mainAdDuration = mainAudio.duration;
+        let totalMin = Math.floor(mainAdDuration / 60);
+        let totalSec = Math.floor(mainAdDuration % 60);
         if(totalSec < 10){
             totalSec = `0${totalSec}`;
         }
@@ -112,12 +112,13 @@ mainAudio.addEventListener("timeupdate", (e)=>{
     //update playing song currentTime on according to the progress bar width
 
     progressArea.addEventListener("click", (e)=>{
-        let progressWidthval = progressArea.clientWidth;
+        let progressWidth = progressArea.clientWidth;
         let clickedOffSetX = e.offsetX;
         let songDuration = mainAudio.duration;
 
-        mainAudio.currentTime = (clickedOffSetX / progressWidthval) * songDuration;
+        mainAudio.currentTime = (clickedOffSetX / progressWidth) * songDuration;
         playMusic();
+        playingSong();
         
     });
 
@@ -133,7 +134,7 @@ mainAudio.addEventListener("timeupdate", (e)=>{
                 break;
                 case "repeat_one":
                     repeatBtn.innerText = "shuffle";
-                    repeatBtn.setAttribute("title", "Playback shuffle");
+                    repeatBtn.setAttribute("title", "Playback shuffled");
                     break;
                     case "shuffle":
                         repeatBtn.innerText = "repeat";
@@ -156,23 +157,24 @@ mainAudio.addEventListener("timeupdate", (e)=>{
                     playMusic();
                     break;
                     case "shuffle":
-                        let randIndex = Math.floor(Math.random() * allMusic.length + 1);
+                        let randIndex = Math.floor((Math.random() * allMusic.length) + 1);
                         do{
-                            andIndex = Math.floor(Math.random() * allMusic.length + 1);
+                            randIndex = Math.floor((Math.random() * allMusic.length) + 1);
                         }while(musicIndex = randIndex);
                         musicIndex = randIndex;
                         loadMusic(musicIndex);
                         playMusic();
+                        playingSong();
                         break;
         }
    });
 
-   showMoreBtn.addEventListener("click", ()=>{
+   moreMusicBtn.addEventListener("click", ()=>{
     musicList.classList.toggle("show");
    });
 
-   hideMusicBtn.addEventListener("click", ()=>{
-    showMoreBtn.click();
+   closeMusicBtn.addEventListener("click", ()=>{
+    moreMusicBtn.click();
    });
 
 const ulTag = wrapper.querySelector("ul");
@@ -184,6 +186,7 @@ for (let i = 0; i < allMusic.length; i++) {
     <div class="row">
     <span>${allMusic[i].name}</span>
     <p>${allMusic[i].artist}</p>
+    </div>
     <span id="${allMusic[i].src}" class="audio-duration">3:03</span>
     <audio class="${allMusic[i].src}" src="songs/${allMusic[i].src}.mp3"></audio>
     </li>`;
@@ -195,19 +198,20 @@ let liAudioTag = ulTag.querySelector(`.${allMusic[i].src}`);
 
 liAudioTag.addEventListener("loadeddata", ()=>{
     let duration = liAudioTag.duration;
-    let totalMin = Math.floor(audioDuration / 60);
-    let totalSec = Math.floor(audioDuration % 60);
+    let totalMin = Math.floor(Duration / 60);
+    let totalSec = Math.floor(Duration % 60);
     if(totalSec < 10){
         totalSec = `0${totalSec}`;
     }
-    liAudioDuration.innerText = `${totalMin}:${totalSec}`;
+    liAudioDurationTag.innerText = `${totalMin}:${totalSec}`;
+    liAudioDurationTag.setAttribute("t-duration", `${totalMin}:${totalSec}`);
 });
 }
 //play particular song from the list onclick of li tag
 function playingSong() {
-const allLiTags = ulTag.querySelectorAll("li");
+const allLiTag = ulTag.querySelectorAll("li");
 
-for (let j = 0; j < allLiTags.length; j++) {
+for (let j = 0; j < allLiTag.length; j++) {
     let audioTag = allLiTag[j].querySelector(".audio-duration");
 
     if(allLiTag[j].classList.contains("playing")){

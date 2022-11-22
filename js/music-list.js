@@ -48,4 +48,4 @@ let allMusic = [
         src: "music-8"
     },
     
-]
+];

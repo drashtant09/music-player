@@ -15,25 +15,26 @@
       <i class="material-icons">more_horiz</i>
     </div>
     <div class="img-area">
-      <img src="" alt="error">
+      <img src="" alt="">
     </div>
     <div class="song-details">
       <p class="name"></p>
       <p class="artist"></p>
     </div>
     <div class="progress-area">
-      <div class="progress-bar"></div>
-      <div class="timer">
-        <span class="current">0:00</span>
-        <span class="duration"></span>
+      <div class="progress-bar">
+      <audio id="main-audio" src=""></audio>
+      </div>
+      <div class="song-timer">
+        <span class="current-time">0:00</span>
+        <span class=" max-duration">3:03</span>
      </div>
-     <audio id="main-audio" src=""></audio>
     </div>
     <div class="controls">
       <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
       <i id="prev" class="material-icons">skip_previous</i>
       <div class="play-pause">
-        <i class="material-icons">play_arrow</i>
+        <i class="material-icons play">play_arrow</i>
       </div>
       <i id="next" class="material-icons">skip_next</i>
       <i id="more-music" class="material-icons">queue_music</i>
@@ -41,64 +42,13 @@
         <div class="music-list">
           <div class="header">
             <div class="row">
-              <i class="material-icons">queue_music</i>
-               <span>Music-list</span>
+              <i class="list material-icons">queue_music</i>
+               <span>Music list</span>
             </div>
             <i id="close" class="material-icons">close</i>  
           </div>
         <ul>
-          <li>
-            <li>
-              <div class="row">
-                <span><li>
-                  <div class="row">
-                    <span>DANCE KA BHOOT</span>
-                    <p>...Arijit Singh...</p>
-                  </div>
-                  <span class="audio-duration">3:03</span>
-            </li>
-            <Li>
-            <div class="row">
-              <span>RANG JO LAGYO</span>
-              <p>...Atif Aslam, Shreya Ghoshal...</p>
-            </div>
-            <span class="audio-duration">4:56</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>TU AAKE DEKHLE</span>
-              <p>...King...</p>
-            </div>
-            <span class="audio-duration">4:42</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>BESABRIYAAN</span>
-              <p>...Armaan Malik...</p>
-            </div>
-            <span class="audio-duration">4:15</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>SHUBHAARAMBH</span>
-              <p>...Shruti Pathak...</p>
-            </div>
-            <span class="audio-duration">3:54</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>KESARIYA</span>
-              <p>...Arijit Singh...</p>
-            </div>
-            <span class="audio-duration">4:28</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>LEMONADE</span>
-              <p>...Diljit Dosanjh...</p>
-            </div>
-            <span class="audio-duration">2:46</span>
-          </li>
+          <!--here li list are coming from js-->
         </ul>
     <div>
     </div>
