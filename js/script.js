@@ -10,7 +10,7 @@ prevBtn = wrapper.querySelector("#prev"),
 nextBtn = wrapper.querySelector("#next"),
 progressArea = wrapper.querySelector(".progress-area"),
 progressBar = wrapper.querySelector(".progress-bar"),
-musicList = wrapper.querySelector("music-list"),
+musicList = wrapper.querySelector(".music-list"),
 showMoreBtn = wrapper.querySelector("#more-music"),
 hideMusicBtn = wrapper.querySelector("#close");
 
@@ -237,7 +237,7 @@ function clicked(element){
     musicIndex = getLiIndex;
     loadMusic(musicIndex);
     playMusic();
-    playingSong();
+    playingNow();
 }
 
 
